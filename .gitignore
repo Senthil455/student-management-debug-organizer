@@ -1,0 +1,5 @@
+node_modules/
+teams/
+.env
+.DS_Store
+npm-debug.log*
