@@ -5,8 +5,13 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "start:clean": "node server.js",
+    "start:buggy": "node teams/common-all15/server.js",
+    "setup:buggy": "npm install --prefix teams/common-all15",
+    "setup": "npm install && npm install --prefix teams/common-all15",
     "generate": "node tools/generate.js",
-    "smoke-test": "node tools/smoke-test.js"
+    "smoke-test": "node tools/smoke-test.js",
+    "smoke-test:buggy": "node tools/smoke-test.js http://localhost:3000"
   },
   "engines": {
     "node": ">=18"

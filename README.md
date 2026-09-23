@@ -1,9 +1,18 @@
 # Student Management System - Debugging Round
 
+> **AFTER `git clone` - 2 commands to run the BUGGY site (for participants):**
+> ```bash
+> git clone https://github.com/Senthil455/student-management-debug.git
+> cd student-management-debug
+> npm run setup:buggy   # installs deps for buggy build (once)
+> npm run start:buggy   # -> http://localhost:3000  (all 15 bugs: 8E+5M+2H)
+> ```
+> No `cd teams/...` needed. For clean (correct) version: `npm start` or `npm run start:clean`.
+
 A deliberately simple **Student Management System** built for a debugging
 competition (Round 2). The master build in this folder is the **fully fixed,
 correct application**. Participant builds with intentional bugs are generated
-from it with one command.
+from it with one command. `teams/common-all15/` is a ready-made unified buggy build (all 15 merged) for when every team gets the same bugs.
 
 ## Tech stack (intentionally simple)
 
@@ -20,34 +29,37 @@ from it with one command.
 
 ```
 student-management-debug/
-├── server.js                     Express entry point (serves UI + API)
-├── src/
-│   ├── routes/students.js        REST routes
-│   ├── controllers/studentController.js   Request handlers
-│   └── data/db.js                JSON-file "database" layer
-├── data/
-│   ├── students.json             Live records (mutated by the app)
-│   └── students.seed.json        Pristine sample data used by reset
-├── public/                       Frontend (index/search/update/manage pages)
-├── tools/
-│   ├── bugs.js                   Catalogue of the 15 bug patches
-│   ├── generate.js               Team-build generator (bug injector)
-│   └── smoke-test.js             API smoke test for any build
+├── server.js                     Express entry point (serves UI + API) - CLEAN master
+├── src/                          (clean)
+├── data/                         (clean)
+├── public/                       (clean)
+├── tools/                        bugs.js / generate.js / smoke-test.js
+├── teams/
+│   └── common-all15/             READY BUGGY build for ALL teams (8E+5M+2H merged) - just run it
+│       ├── server.js  src/  public/  data/  package.json
+│       └── README.md  (participant instructions)
 ├── ANSWER_KEY.md                 ORGANIZER ONLY - all bugs + fixes + demos
 ├── PARTICIPANT_README.md         Copied into participant builds
-└── teams/                        (created by you) generated team builds
+└── package.json                  npm run start:buggy / start:clean / setup:buggy
 ```
 
-## Run the clean master build (correct behaviour)
+## Run after git clone (simplest)
 
+**Participants (buggy - all 15 bugs):**
+```bash
+npm run setup:buggy   # one-time: npm install --prefix teams/common-all15
+npm run start:buggy   # -> http://localhost:3000  (buggy)
+# or manually: cd teams/common-all15; npm install; npm start
+```
+
+**Organizers / judges (clean - correct behaviour):**
 ```bash
 npm install
-npm start
-# open http://localhost:3000
+npm start             # or npm run start:clean -> http://localhost:3000
+# run buggy on another port at same time: $env:PORT=3001; npm run start:buggy
 ```
 
-Use this to show participants what correct behaviour looks like, or to verify
-a team's fixes side by side.
+Use clean to show correct behaviour side-by-side or verify fixes.
 
 ## Generate a participant build
 
